@@ -1,0 +1,37 @@
+# fly.toml app configuration file generated for ghost-on-fly-io on 2024-09-14T15:24:02+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'ghost-on-fly-io'
+primary_region = 'ams'
+
+[build]
+  image = 'ghost:5.94.1'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[env]  
+  url = "https://ghost-on-fly-io.fly.dev"  
+  database__client = "sqlite3"  
+  database__connection__filename = "content/data/ghost.db"  
+  database__useNullAsDefault = "true"  
+  database__debug = "false"
+  
+[mounts]
+  source="data"
+  destination="/var/lib/ghost/content"
+
+[[services]]  
+  internal_port = 2368

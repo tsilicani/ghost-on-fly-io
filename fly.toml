@@ -10,7 +10,7 @@ primary_region = 'ams'
   image = 'ghost:5.94.1'
 
 [http_service]
-  internal_port = 8080
+  internal_port = 2368
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
@@ -32,6 +32,3 @@ primary_region = 'ams'
 [mounts]
   source="data"
   destination="/var/lib/ghost/content"
-
-[[services]]  
-  internal_port = 2368
